@@ -91,6 +91,7 @@ Do not archive routine thoughts, repeated progress chatter, ordinary completion 
 - Before trusting an existing ledger, check `Last Updated`, `Current Status`, and `Next Action`; if they conflict with the folder contents, refresh the README first.
 - When a task completes, write a short completed summary and archive only historically important decisions or snapshots.
 - Record lessons only when they prevent future mistakes; one-off lessons stay archived, repeated lessons become guardrail or skill-update candidates.
+- Put code boundary notes in the active detail doc, not the README; uncertain boundaries stay `Unknown`.
 - If another skill creates a PRD, issue, diagnosis, or spec, link it from the ledger with a 1-3 line summary instead of copying it wholesale.
 
 Open `REFERENCE.md` only when sizing, naming, state, or archive rules are unclear. Open only the specific template needed when creating a file.

@@ -134,6 +134,8 @@ Recommended sections:
 
 Do not put detailed requirements, designs, diagnosis logs, PRDs, or long decision narratives in README. Link to them.
 
+Do not put detailed code boundary notes in README. If needed, link to the active detail doc that contains `Code Boundaries`.
+
 Keep routing sections small:
 
 - `Planned`: up to 3 current links.
@@ -196,6 +198,67 @@ Promotion rules:
 
 Do not record lessons for ordinary progress, transient confusion, or issues that are fully explained by the completed summary.
 
+## Code Boundaries
+
+Use `Code Boundaries` only as a local safety note for the current code change. It is not a permanent architecture map.
+
+Allowed when:
+
+- task size is `Medium` or larger,
+- multiple modules or risky files may be touched,
+- generated files, migrations, auth/session, external API contracts, or data-loss risk are nearby,
+- prior lessons mention the same area,
+- handoff would be safer with explicit boundaries.
+
+Skip for `Tiny` and most `Small` tasks.
+
+Put the section in the active `in-progress/` or other detail document, not in README. README may link to that document in `Documents To Read`.
+
+Keep it short:
+
+- 12 lines or fewer by default,
+- up to 5 path patterns,
+- up to 3 `Do Not Touch Without Approval` entries,
+- path patterns over exhaustive file lists,
+- `Unknown` or `Needs inspection` when uncertain.
+
+Use this shape:
+
+```md
+## Code Boundaries
+
+Boundary Confidence: high | medium | low
+
+Likely Module:
+- {{module or Unknown}}
+
+Safe To Edit:
+- {{path or area}}
+
+Edit With Care:
+- {{path or area}} because {{risk}}
+
+Do Not Touch Without Approval:
+- {{path or area}} because {{source or risk}}
+
+Required Checks:
+- {{actual runnable check}}
+```
+
+`Do Not Touch Without Approval` is allowed only when grounded in generated files, migration history, security/session boundaries, external API contracts, explicit user instructions, AGENTS/project instructions, ADRs, or existing docs. Never invent a permanent prohibition from a guess.
+
+Treat code boundaries as stale after 14 days or after visible code structure changes. Re-check the file tree before reusing them.
+
+Promote to a future `docs/code-map/` or dedicated boundary skill only when:
+
+- the same module boundary appears in 3 or more ledgers,
+- the same boundary mistake appears in 2 or more lessons,
+- multiple agents repeatedly confuse the same area,
+- the boundary is stable and product/architecture-relevant,
+- the user explicitly asks for a code map.
+
+If the work becomes module design or boundary redesign, stop using this section and hand off to `improve-codebase-architecture`.
+
 ## Integration With Other Skills
 
 - Karpathy-style guidelines decide whether documentation is too large for the task.
@@ -213,6 +276,7 @@ Shrink the ledger when:
 - Tiny or small tasks create new folders repeatedly.
 - `archive/` receives routine progress chatter.
 - lessons are recorded for every minor inconvenience.
+- code boundaries are treated as permanent truth instead of task-local notes.
 - there are multiple active `in-progress` files for one serial task.
 - users ask for a result and the agent keeps expanding the ledger.
 
@@ -228,6 +292,7 @@ At task start:
 During work:
 
 - keep one active `in-progress` note current,
+- add short code boundaries only for risky Medium-or-larger code changes,
 - link related PRDs, issues, specs, tests, and decisions,
 - avoid duplicating long content.
 
