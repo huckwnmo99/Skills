@@ -1,8 +1,66 @@
 # Skills
 
-This repository publishes a small Codex skillbook assembled from the strongest parts of several agent-skill systems. It is not a raw mirror of the source repositories. The source projects are treated as ingredients; this repo keeps the parts that are useful for everyday Codex work.
+This repository publishes a Codex skillbook assembled from original upstream skills plus a small amount of Codex-specific routing.
+
+The intent is:
+
+- preserve useful original skills as real `SKILL.md` folders,
+- adjust names only where needed to avoid collisions or Claude-specific assumptions,
+- add thin coordination skills so Codex knows which original skill to use when,
+- keep task memory and lesson promotion in `workflow-ledger`.
 
 - `karpathy-guidelines`
+- `matt-engineering-workflows`
+- `ouroboros-spec-loop`
+- `codex-harness-adapter`
+- `workflow-ledger`
+
+## Skill Groups
+
+### Base discipline
+
+- `karpathy-guidelines`
+
+### Matt Pocock engineering skills
+
+- `diagnose`
+- `grill-with-docs`
+- `improve-codebase-architecture`
+- `prototype`
+- `setup-matt-pocock-skills`
+- `tdd`
+- `to-issues`
+- `to-prd`
+- `triage`
+- `zoom-out`
+- `caveman`
+- `grill-me`
+- `write-a-skill`
+- `git-guardrails-claude-code`
+- `migrate-to-shoehorn`
+- `scaffold-exercises`
+- `setup-pre-commit`
+- `edit-article`
+- `obsidian-vault`
+
+### Ouroboros core skills
+
+These are prefixed with `ouroboros-` so generic names like `run`, `seed`, and `status` do not collide with other skillbooks.
+
+- `ouroboros-auto`
+- `ouroboros-brownfield`
+- `ouroboros-evaluate`
+- `ouroboros-evolve`
+- `ouroboros-interview`
+- `ouroboros-pm`
+- `ouroboros-ralph`
+- `ouroboros-run`
+- `ouroboros-seed`
+- `ouroboros-status`
+- `ouroboros-unstuck`
+
+### Local coordination skills
+
 - `matt-engineering-workflows`
 - `ouroboros-spec-loop`
 - `codex-harness-adapter`
@@ -11,11 +69,11 @@ This repository publishes a small Codex skillbook assembled from the strongest p
 ## Operating Model
 
 ```text
-Karpathy guidelines        -> baseline behavior
-Ouroboros spec loop        -> clarify large or vague work before execution
-Matt engineering workflows -> choose diagnosis, TDD, PRD, issue slicing, or architecture loops
-Workflow ledger            -> preserve progress, decisions, completed work, and lessons
-Codex harness adapter      -> route between skills and decide when harness-style structure is justified
+Karpathy guidelines          -> baseline behavior
+Ouroboros original skills    -> interview, seed, run, evaluate, evolve
+Matt original skills         -> diagnose, TDD, PRD, issues, triage, architecture, etc.
+Workflow ledger              -> preserve progress, decisions, completed work, and lessons
+Codex coordination skills    -> route between originals and avoid overbuilding
 ```
 
 Use the smallest layer that safely solves the request. Do not run the entire stack for every task.
@@ -35,9 +93,19 @@ The skill lives at:
 skills/karpathy-guidelines/
 ```
 
+## matt-engineering-workflows
+
+`matt-engineering-workflows` is a router over the Matt-derived original skills. It should choose one primary skill, such as `diagnose`, `tdd`, `to-prd`, `to-issues`, `triage`, `grill-with-docs`, or `improve-codebase-architecture`.
+
+The skill lives at:
+
+```text
+skills/matt-engineering-workflows/
+```
+
 ## ouroboros-spec-loop
 
-`ouroboros-spec-loop` turns vague or strategic requests into execution-ready seeds before coding:
+`ouroboros-spec-loop` is a router over the prefixed Ouroboros original skills. It turns vague or strategic requests into execution-ready seeds before coding:
 
 - interview,
 - seed,
@@ -49,23 +117,6 @@ The skill lives at:
 
 ```text
 skills/ouroboros-spec-loop/
-```
-
-## matt-engineering-workflows
-
-`matt-engineering-workflows` routes day-to-day engineering work into focused loops:
-
-- alignment,
-- diagnosis,
-- TDD,
-- PRD synthesis,
-- issue slicing,
-- architecture review.
-
-The skill lives at:
-
-```text
-skills/matt-engineering-workflows/
 ```
 
 ## codex-harness-adapter
@@ -104,8 +155,10 @@ skills/workflow-ledger/
 
 ## Sources
 
-These skills are distilled from:
+Original or adapted skills come from:
 
 - Karpathy-inspired guidelines: https://github.com/forrestchang/andrej-karpathy-skills
 - Matt Pocock skills: https://github.com/mattpocock/skills
 - Ouroboros: https://github.com/Q00/ouroboros
+
+See `licenses/` for upstream MIT license notices where available.

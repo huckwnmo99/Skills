@@ -35,7 +35,7 @@ Examples: narrow single-file bug, simple UI copy change, small config update.
 Use:
 
 - `karpathy-guidelines`
-- the relevant `matt-engineering-workflows` loop
+- one relevant Matt-derived original skill, usually `diagnose`, `tdd`, `grill-with-docs`, or `zoom-out`
 - existing ledger log only if it helps future resume
 
 Avoid:
@@ -51,7 +51,7 @@ Examples: multi-file bug, feature slice, refactor, work that may resume later.
 Use:
 
 - `workflow-ledger` lightly when context matters
-- one primary loop from `matt-engineering-workflows`
+- one primary original skill, usually `diagnose`, `tdd`, `to-prd`, `to-issues`, `triage`, or `improve-codebase-architecture`
 - focused verification
 
 Avoid:
@@ -67,8 +67,8 @@ Examples: product workflow, domain model, architecture change, multi-day feature
 Use:
 
 - `workflow-ledger`
-- `ouroboros-spec-loop` when the task is conceptually unclear
-- one execution loop from `matt-engineering-workflows`
+- `ouroboros-spec-loop` or a concrete `ouroboros-*` skill when the task is conceptually unclear
+- one Matt-derived execution skill when implementation starts
 - role-based review if needed
 - lessons for recurring or high-risk mistakes
 
@@ -96,12 +96,16 @@ Use this table as the default route:
 | Need | Primary skill |
 | --- | --- |
 | prevent overbuild | `karpathy-guidelines` |
-| unclear large request | `ouroboros-spec-loop` |
-| hard bug or regression | `matt-engineering-workflows` diagnosis loop |
-| behavior-first implementation | `matt-engineering-workflows` TDD loop |
-| PRD | `matt-engineering-workflows` PRD loop |
-| issue breakdown | `matt-engineering-workflows` issue slicing loop |
-| architecture improvement | `matt-engineering-workflows` architecture loop |
+| choose among Matt skills | `matt-engineering-workflows` |
+| unclear large request | `ouroboros-spec-loop` or `ouroboros-interview` |
+| Seed from clarified requirements | `ouroboros-seed` |
+| Execute Seed | `ouroboros-run` |
+| Evaluate execution | `ouroboros-evaluate` |
+| hard bug or regression | `diagnose` |
+| behavior-first implementation | `tdd` |
+| PRD | `to-prd` |
+| issue breakdown | `to-issues` |
+| architecture improvement | `improve-codebase-architecture` |
 | persistent task memory | `workflow-ledger` |
 | agent/team operating model | `harness` |
 | new reusable procedure | `write-a-skill` |
@@ -112,11 +116,11 @@ When harness-style work is justified, map roles to Codex-friendly artifacts:
 
 | Role | Responsibility | Likely skills |
 | --- | --- | --- |
-| Product/Ops Analyst | user workflow, policy, non-technical context | `ouroboros-spec-loop`, `matt-engineering-workflows` |
-| Spec Architect | ambiguity reduction, acceptance criteria | `ouroboros-spec-loop`, `workflow-ledger` |
-| Implementation Engineer | small code changes, tests, integration | `karpathy-guidelines`, `matt-engineering-workflows` |
-| Debugger | reproduce and fix failures | `matt-engineering-workflows` |
-| QA/Reviewer | verification, regressions, cross-boundary checks | `matt-engineering-workflows` |
+| Product/Ops Analyst | user workflow, policy, non-technical context | `ouroboros-interview`, `to-prd`, `grill-with-docs` |
+| Spec Architect | ambiguity reduction, acceptance criteria | `ouroboros-seed`, `ouroboros-spec-loop`, `workflow-ledger` |
+| Implementation Engineer | small code changes, tests, integration | `karpathy-guidelines`, `tdd` |
+| Debugger | reproduce and fix failures | `diagnose` |
+| QA/Reviewer | verification, regressions, cross-boundary checks | `ouroboros-evaluate`, `diagnose` |
 | Ledger Keeper | current state, decisions, lessons | `workflow-ledger` |
 | Harness Maintainer | role/skill map updates | `harness`, `write-a-skill` |
 

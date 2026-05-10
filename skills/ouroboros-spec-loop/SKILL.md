@@ -5,7 +5,7 @@ description: Specification-first workflow for turning vague ideas into stable ex
 
 # Ouroboros Spec Loop
 
-Use this skill before implementation when the hard part is deciding what should be built. It turns vague intent into an execution-ready seed, then feeds evaluation results back into the next pass.
+Use this skill as a router over the imported Ouroboros skills when the hard part is deciding what should be built. It turns vague intent into an execution-ready seed, then feeds evaluation results back into the next pass.
 
 ## Core Rule
 
@@ -19,6 +19,8 @@ Interview -> Seed -> Execute -> Evaluate -> Evolve
 
 ### 1. Interview
 
+Use `ouroboros-interview` when a full interview is needed.
+
 Ask Socratic questions that expose hidden assumptions:
 
 - What is the real goal?
@@ -31,6 +33,8 @@ Ask Socratic questions that expose hidden assumptions:
 Keep the interview proportional. A small feature may need three questions; a strategic system may need a full brief.
 
 ### 2. Seed
+
+Use `ouroboros-seed` when requirements should become a formal Seed.
 
 Turn the answers into a compact execution seed:
 
@@ -47,14 +51,18 @@ If the seed still has high ambiguity, continue interviewing instead of pretendin
 
 ### 3. Execute
 
+Use `ouroboros-run` when there is an actual Seed to execute.
+
 Execute through the smallest suitable workflow:
 
-- use `matt-engineering-workflows` for development loops,
+- use the relevant Matt-derived skill for development loops,
 - use `workflow-ledger` for persistent task memory,
 - use `karpathy-guidelines` for coding behavior,
 - use `codex-harness-adapter` when multiple workflows need routing.
 
 ### 4. Evaluate
+
+Use `ouroboros-evaluate` when evaluating an execution or artifact against a Seed.
 
 Evaluate with layered checks:
 
@@ -63,6 +71,8 @@ Evaluate with layered checks:
 - consensus or review: use another reviewer, agent, or human when stakes are high.
 
 ### 5. Evolve
+
+Use `ouroboros-evolve` or `ouroboros-ralph` when the work should iterate beyond one pass.
 
 Feed the evaluation back into the next seed:
 
@@ -94,6 +104,6 @@ If two or more are weak, continue specification work.
 
 ## Source
 
-Distilled for Codex from the Ouroboros specification-first workflow:
+Router for skills imported or adapted from:
 
 - https://github.com/Q00/ouroboros

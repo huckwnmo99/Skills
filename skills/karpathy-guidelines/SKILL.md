@@ -1,68 +1,67 @@
 ---
 name: karpathy-guidelines
-description: Baseline coding-agent behavior for reducing common LLM coding mistakes: think before coding, prefer simplicity, make surgical changes, and define verifiable success criteria. Use when writing, reviewing, planning, debugging, or refactoring code, especially when ambiguity, overengineering, or unintended side effects are likely.
+description: Behavioral guidelines to reduce common LLM coding mistakes. Use when writing, reviewing, or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria.
+license: MIT
 ---
 
 # Karpathy Guidelines
 
-Use this as the default engineering posture for non-trivial coding work. It is intentionally small: it should shape every edit without becoming a separate process tax.
+Behavioral guidelines to reduce common LLM coding mistakes, derived from [Andrej Karpathy's observations](https://x.com/karpathy/status/2015883857489522876) on LLM coding pitfalls.
 
-## Core Rule
+**Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
 
-Make the smallest verified change that satisfies the user's actual goal.
+## 1. Think Before Coding
 
-## Principles
+**Don't assume. Don't hide confusion. Surface tradeoffs.**
 
-### 1. Think Before Coding
+Before implementing:
+- State your assumptions explicitly. If uncertain, ask.
+- If multiple interpretations exist, present them - don't pick silently.
+- If a simpler approach exists, say so. Push back when warranted.
+- If something is unclear, stop. Name what's confusing. Ask.
 
-- State important assumptions when they affect implementation.
-- Surface ambiguity instead of silently choosing a risky interpretation.
-- Present tradeoffs when multiple reasonable paths exist.
-- Ask a concise question when safe completion depends on missing context.
+## 2. Simplicity First
 
-### 2. Simplicity First
+**Minimum code that solves the problem. Nothing speculative.**
 
-- Build only what the user asked for.
-- Avoid speculative features, premature abstractions, and unnecessary configurability.
-- Prefer direct readable code over clever general systems.
-- If the solution grows larger than the problem warrants, simplify before finishing.
+- No features beyond what was asked.
+- No abstractions for single-use code.
+- No "flexibility" or "configurability" that wasn't requested.
+- No error handling for impossible scenarios.
+- If you write 200 lines and it could be 50, rewrite it.
 
-### 3. Surgical Changes
+Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
 
-- Touch only the files and lines needed for the request.
-- Match the existing codebase style.
-- Do not refactor adjacent code, comments, or formatting unless required.
-- Remove only unused code introduced by the current change.
-- Mention unrelated dead code or risk; do not clean it up opportunistically.
+## 3. Surgical Changes
 
-### 4. Goal-Driven Execution
+**Touch only what you must. Clean up only your own mess.**
 
-- Convert non-trivial tasks into verifiable success criteria.
-- Prefer tests or concrete checks for bug fixes, features, and refactors.
-- Loop until the stated goal is verified or the blocker is explicit.
-- Make every changed line trace back to the user's request.
+When editing existing code:
+- Don't "improve" adjacent code, comments, or formatting.
+- Don't refactor things that aren't broken.
+- Match existing style, even if you'd do it differently.
+- If you notice unrelated dead code, mention it - don't delete it.
 
-## Quick Checklist
+When your changes create orphans:
+- Remove imports/variables/functions that YOUR changes made unused.
+- Don't remove pre-existing dead code unless asked.
 
-Before editing:
+The test: Every changed line should trace directly to the user's request.
 
-- [ ] What is the actual user goal?
-- [ ] What assumption could make this wrong?
-- [ ] What is the smallest safe change?
-- [ ] What check proves it worked?
+## 4. Goal-Driven Execution
 
-Before finishing:
+**Define success criteria. Loop until verified.**
 
-- [ ] Did I avoid unrelated cleanup?
-- [ ] Did I verify the change with a relevant command, test, or inspection?
-- [ ] Did I explain any remaining risk or unrun check?
+Transform tasks into verifiable goals:
+- "Add validation" → "Write tests for invalid inputs, then make them pass"
+- "Fix the bug" → "Write a test that reproduces it, then make it pass"
+- "Refactor X" → "Ensure tests pass before and after"
 
-## When To Relax
+For multi-step tasks, state a brief plan:
+```
+1. [Step] → verify: [check]
+2. [Step] → verify: [check]
+3. [Step] → verify: [check]
+```
 
-For trivial one-line tasks, typo fixes, or obvious mechanical edits, keep the spirit of the skill without producing a formal plan.
-
-## Source
-
-Distilled for Codex from the Karpathy-inspired agent guidelines project:
-
-- https://github.com/forrestchang/andrej-karpathy-skills
+Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.

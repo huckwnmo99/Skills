@@ -9,7 +9,7 @@ description: Routes Codex work across existing skills, workflow-ledger, and opti
 
 Use this as a thin orchestration layer. It decides when to use existing skills, when to create a workflow ledger, and when a harness-style agent team is justified.
 
-It does not replace `harness`, `workflow-ledger`, `write-a-skill`, TDD, diagnosis, PRD, or architecture skills. It routes between them and prevents duplicate process.
+It does not replace `harness`, `workflow-ledger`, `write-a-skill`, `diagnose`, `tdd`, `to-prd`, `to-issues`, `triage`, Ouroboros skills, or architecture skills. It routes between them and prevents duplicate process.
 
 ## Core Rule
 
@@ -29,20 +29,23 @@ Harness work is an exception, not the default. Use it only when role separation,
 ## Routing Table
 
 - `Tiny`: use `karpathy-guidelines` only. Do not create ledger or harness.
-- `Small`: use `karpathy-guidelines` plus the relevant `matt-engineering-workflows` loop. Existing ledger log only if useful.
-- `Medium`: use `workflow-ledger` lightly plus one execution loop from `matt-engineering-workflows`.
-- `Large`: use `ouroboros-spec-loop`, `workflow-ledger`, and one execution loop; add role-based review if needed.
+- `Small`: use `karpathy-guidelines` plus one Matt-derived original skill. Existing ledger log only if useful.
+- `Medium`: use `workflow-ledger` lightly plus one original skill such as `diagnose`, `tdd`, `to-prd`, or `to-issues`.
+- `Large`: use `ouroboros-spec-loop` or the relevant `ouroboros-*` skill, `workflow-ledger`, and one execution skill; add role-based review if needed.
 - `Strategic`: use `harness` plus `workflow-ledger` to design roles, skill mapping, validation, and evolution.
 
 ## One Discovery Workflow
 
 For any one task, use at most one discovery or clarification workflow:
 
-- unclear product/domain problem: use `ouroboros-spec-loop`
-- PRD needed: use the PRD loop in `matt-engineering-workflows`
-- issue breakdown needed: use the issue slicing loop in `matt-engineering-workflows`
-- bug or regression: use the diagnosis loop in `matt-engineering-workflows`
-- architecture improvement: use the architecture loop in `matt-engineering-workflows`
+- unclear product/domain problem: use `ouroboros-spec-loop` or `ouroboros-interview`
+- Seed generation needed: use `ouroboros-seed`
+- Ouroboros execution needed: use `ouroboros-run`
+- Ouroboros evaluation needed: use `ouroboros-evaluate`
+- PRD needed: use `to-prd`
+- issue breakdown needed: use `to-issues`
+- bug or regression: use `diagnose`
+- architecture improvement: use `improve-codebase-architecture`
 - harness/team design: use `harness`
 
 ## Codex Adaptation
