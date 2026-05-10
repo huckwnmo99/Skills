@@ -1,9 +1,72 @@
 # Skills
 
-This repository currently publishes these Codex skills:
+This repository publishes a small Codex skillbook assembled from the strongest parts of several agent-skill systems. It is not a raw mirror of the source repositories. The source projects are treated as ingredients; this repo keeps the parts that are useful for everyday Codex work.
 
+- `karpathy-guidelines`
+- `matt-engineering-workflows`
+- `ouroboros-spec-loop`
 - `codex-harness-adapter`
 - `workflow-ledger`
+
+## Operating Model
+
+```text
+Karpathy guidelines        -> baseline behavior
+Ouroboros spec loop        -> clarify large or vague work before execution
+Matt engineering workflows -> choose diagnosis, TDD, PRD, issue slicing, or architecture loops
+Workflow ledger            -> preserve progress, decisions, completed work, and lessons
+Codex harness adapter      -> route between skills and decide when harness-style structure is justified
+```
+
+Use the smallest layer that safely solves the request. Do not run the entire stack for every task.
+
+## karpathy-guidelines
+
+`karpathy-guidelines` is the default coding-agent discipline:
+
+- think before coding,
+- prefer simple direct code,
+- make surgical changes,
+- define verifiable success criteria.
+
+The skill lives at:
+
+```text
+skills/karpathy-guidelines/
+```
+
+## ouroboros-spec-loop
+
+`ouroboros-spec-loop` turns vague or strategic requests into execution-ready seeds before coding:
+
+- interview,
+- seed,
+- execute,
+- evaluate,
+- evolve.
+
+The skill lives at:
+
+```text
+skills/ouroboros-spec-loop/
+```
+
+## matt-engineering-workflows
+
+`matt-engineering-workflows` routes day-to-day engineering work into focused loops:
+
+- alignment,
+- diagnosis,
+- TDD,
+- PRD synthesis,
+- issue slicing,
+- architecture review.
+
+The skill lives at:
+
+```text
+skills/matt-engineering-workflows/
+```
 
 ## codex-harness-adapter
 
@@ -38,3 +101,11 @@ The skill lives at:
 ```text
 skills/workflow-ledger/
 ```
+
+## Sources
+
+These skills are distilled from:
+
+- Karpathy-inspired guidelines: https://github.com/forrestchang/andrej-karpathy-skills
+- Matt Pocock skills: https://github.com/mattpocock/skills
+- Ouroboros: https://github.com/Q00/ouroboros
