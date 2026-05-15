@@ -5,17 +5,19 @@ description: Specification-first workflow for turning vague ideas into stable ex
 
 # Ouroboros Spec Loop
 
-Use this skill as a router over the imported Ouroboros skills when the hard part is deciding what should be built. It turns vague intent into an execution-ready seed, then feeds evaluation results back into the next pass.
+Use this skill as a router over the imported Ouroboros skills when the hard part is deciding what should be built. It turns vague intent into an execution-ready seed and stops there. Execution is a separate decision made by the user.
 
 ## Core Rule
 
-Do not start major execution until the goal, constraints, success criteria, and relevant context are clear enough to verify.
+Do not start execution. This skill covers planning only: Interview and Seed. When the Seed is complete, stop and ask the user whether to proceed.
 
-## Loop
+## Scope
 
 ```text
-Interview -> Seed -> Execute -> Evaluate -> Evolve
+Interview -> Seed -> [Handoff to user]
 ```
+
+Ouroboros execution (`ouroboros-run`, `ouroboros-evaluate`, `ouroboros-evolve`) is outside this skill's scope. Those run only if the user explicitly continues after the handoff.
 
 ### 1. Interview
 
@@ -49,40 +51,17 @@ Turn the answers into a compact execution seed:
 
 If the seed still has high ambiguity, continue interviewing instead of pretending it is ready.
 
-### 3. Execute
+### 3. Handoff
 
-Use `ouroboros-run` when there is an actual Seed to execute.
+When the Seed is complete, stop and ask the user:
 
-Execute through the smallest suitable workflow:
+> 계획이 완성됐습니다. 스킬을 사용해서 계획을 더 구체화할까요?
 
-- use the relevant Matt-derived skill for development loops,
-- use `workflow-ledger` for persistent task memory,
-- use `karpathy-guidelines` for coding behavior,
-- use `codex-harness-adapter` when multiple workflows need routing.
+Wait for the user's response before doing anything else. Do not proceed to execution automatically.
 
-### 4. Evaluate
+If the user says yes, use `ouroboros-evolve` to refine the Seed further, then ask again at the next Seed checkpoint.
 
-Use `ouroboros-evaluate` when evaluating an execution or artifact against a Seed.
-
-Evaluate with layered checks:
-
-- mechanical: tests, typecheck, lint, build, scripts, screenshots, or concrete commands,
-- semantic: does the output satisfy the seed and domain intent?
-- consensus or review: use another reviewer, agent, or human when stakes are high.
-
-### 5. Evolve
-
-Use `ouroboros-evolve` or `ouroboros-ralph` when the work should iterate beyond one pass.
-
-Feed the evaluation back into the next seed:
-
-- what changed,
-- what became clearer,
-- what failed,
-- what should be tried next,
-- whether the task has converged enough to stop.
-
-Record meaningful decisions and lessons in `workflow-ledger` when the work is medium or larger.
+If the user says no or wants to proceed to implementation, hand off to `matt-engineering-workflows` with the completed Seed as context.
 
 ## Ambiguity Gate
 

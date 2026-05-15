@@ -31,7 +31,7 @@ Harness work is an exception, not the default. Use it only when role separation,
 - `Tiny`: use `karpathy-guidelines` only. Do not create ledger or harness.
 - `Small`: use `karpathy-guidelines` plus one skill from `matt-engineering-workflows`. Existing ledger log only if useful.
 - `Medium`: use `workflow-ledger` lightly plus one skill chosen by `matt-engineering-workflows`.
-- `Large`: use `ouroboros-spec-loop` or the relevant `ouroboros-*` skill, `workflow-ledger`, and one execution skill chosen by `matt-engineering-workflows`; add role-based review if needed.
+- `Large`: use `ouroboros-spec-loop` for planning only (Interview + Seed). After the Seed is complete, ask the user before proceeding. If the user continues, delegate execution to `matt-engineering-workflows` with the Seed as context. Use `workflow-ledger` throughout.
 - `Strategic`: use `harness` plus `workflow-ledger` to design roles, skill mapping, validation, and evolution.
 
 For Small through Large tasks, delegate skill selection to `matt-engineering-workflows`. Do not name specific Matt-derived skills (diagnose, tdd, to-prd, etc.) directly from this router. That is `matt-engineering-workflows`'s job.

@@ -13,9 +13,20 @@ When resuming a session, check for an existing ledger first. If one exists, read
 
 ## Skill Routing Policy
 
-Always route through `codex-harness-adapter` first to classify task size. Then delegate skill selection to `matt-engineering-workflows` for concrete engineering tasks, or to the appropriate `ouroboros-*` skill for specification work.
+Always route through `codex-harness-adapter` first to classify task size. Then delegate skill selection to `matt-engineering-workflows` for concrete engineering tasks, or to `ouroboros-spec-loop` for specification work.
 
 Do not stack multiple discovery or clarification workflows on the same task. Pick one and finish it.
+
+## Ouroboros Usage Boundary
+
+Ouroboros skills are for planning only: Interview and Seed. Do not proceed to execution (`ouroboros-run`, `ouroboros-evaluate`, `ouroboros-evolve`) without explicit user confirmation.
+
+When a Seed is complete, always stop and ask:
+
+> 계획이 완성됐습니다. 스킬을 사용해서 계획을 더 구체화할까요?
+
+If the user confirms, use `ouroboros-evolve` to refine further.
+If the user declines, hand off to `matt-engineering-workflows` for execution.
 
 ## Ouroboros Policy
 
