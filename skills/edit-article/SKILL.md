@@ -12,3 +12,9 @@ Confirm the sections with the user.
 2. For each section:
 
 2a. Rewrite the section to improve clarity, coherence, and flow. Use maximum 240 characters per paragraph.
+
+2b. Remove redundant sentences. Each paragraph should carry information not already stated elsewhere in the section.
+
+2c. Confirm the rewritten section with the user before moving to the next one.
+
+3. After all sections are rewritten, do a final pass to check that transitions between sections are smooth and that the overall argument flows from the dependency order confirmed in step 1.

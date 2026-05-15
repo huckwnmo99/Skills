@@ -106,11 +106,21 @@ Otherwise → repeat Step 3, regardless of what the response text says.
 
 ### Step 4: Copy to Clipboard
 
-Read the pm.md file from `meta.pm_path` and copy its contents to the clipboard:
+Read the pm.md file from `meta.pm_path` and copy its contents to the clipboard using the appropriate command for the current OS:
 
 ```bash
+# macOS
 cat <meta.pm_path> | pbcopy
+
+# Windows (PowerShell)
+Get-Content "<meta.pm_path>" | Set-Clipboard
+
+# Linux
+cat <meta.pm_path> | xclip -selection clipboard \
+  || cat <meta.pm_path> | xsel --clipboard --input
 ```
+
+Detect the OS first (`uname -s` or `$env:OS` on Windows) and run the matching command. If clipboard copy fails, skip silently and continue to Step 5.
 
 ### Step 5: Show Result & Next Step
 

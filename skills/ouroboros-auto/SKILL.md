@@ -21,8 +21,7 @@ This skill must be executed by invoking MCP tool `ouroboros_auto`. Do not
 manually inspect repositories, run shell commands, query GitHub, edit files, or
 otherwise emulate the auto pipeline as a substitute.
 
-If `ouroboros_auto` is unavailable, stop and report that the required MCP tool
-is unavailable. A manual fallback is not an `ooo auto` run.
+If `ouroboros_auto` is unavailable, stop and direct the user to install the Ouroboros MCP server following the instructions in the repository README under **Installation → Install Ouroboros MCP**. A manual fallback is not an `ooo auto` run and must not be attempted.
 
 ## Usage
 

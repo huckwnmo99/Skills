@@ -5,6 +5,8 @@ description: Create exercise directory structures with sections, problems, solut
 
 # Scaffold Exercises
 
+> **Project-specific skill.** This skill assumes the `ai-hero-cli` toolchain and its specific directory conventions. It will not work in other projects without modification. If you are using this in a different project, update the lint command and directory naming rules to match your own conventions.
+
 Create exercise directory structures that pass `pnpm ai-hero-cli internal lint`, then commit with `git commit`.
 
 ## Directory naming

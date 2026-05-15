@@ -5,9 +5,13 @@ description: Search, create, and manage notes in the Obsidian vault with wikilin
 
 # Obsidian Vault
 
+> **Personal environment skill.** The vault path below is hardcoded for a specific machine. Before using this skill, update the path to match your actual Obsidian vault location.
+
 ## Vault location
 
 `/mnt/d/Obsidian Vault/AI Research/`
+
+Update this path if your vault is in a different location. On Windows (native), the equivalent path would be `D:\Obsidian Vault\AI Research\`.
 
 Mostly flat at root level.
 
