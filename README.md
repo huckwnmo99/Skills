@@ -366,7 +366,7 @@ Personal:
 
 ## Installation
 
-To install manually into Codex:
+### 1. Clone the skillbook
 
 ```bash
 git clone https://github.com/huckwnmo99/Skills.git
@@ -374,6 +374,32 @@ cp -R Skills/skills/* ~/.codex/skills/
 ```
 
 After installing, start a new Codex session so the skill list refreshes.
+
+### 2. Install Ouroboros MCP (required for Ouroboros skills)
+
+The Ouroboros specification layer requires a local MCP server. Without it, `ouroboros-interview`, `ouroboros-seed`, `ouroboros-run`, `ouroboros-evaluate`, and `ouroboros-evolve` will not work correctly.
+
+Install the package:
+
+```bash
+pip install ouroboros-ai
+```
+
+Register the MCP server with Claude Code:
+
+```bash
+claude mcp add ouroboros uvx -- --from ouroboros-ai[mcp,claude] ouroboros mcp serve
+```
+
+This registers Ouroboros as a local MCP server that Claude Code starts automatically. No separate server process needs to be kept running manually.
+
+Verify the installation:
+
+```bash
+ouroboros --version
+```
+
+> If you skip this step, all Ouroboros skills will fall back to degraded agent-only mode with no persistent session state, no background execution, and no generation tracking.
 
 ## Customization
 

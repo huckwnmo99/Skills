@@ -14,7 +14,7 @@ refines the ontology and acceptance criteria across generations until convergenc
 Gen 1: Interview → Seed(O₁) → Execute → Evaluate
 Gen 2: Wonder → Reflect → Seed(O₂) → Execute → Evaluate
 Gen 3: Wonder → Reflect → Seed(O₃) → Execute → Evaluate
-...until ontology converges (similarity ≥ 0.95) or max 30 generations
+...until ontology converges (similarity ≥ 0.95) or max 10 generations
 ```
 
 ## Usage
@@ -70,7 +70,7 @@ The Ouroboros MCP tools are often registered as **deferred tools** that must be 
    - `continue` → Call `ouroboros_evolve_step` again with just `lineage_id`
    - `converged` → Evolution complete! Display final ontology
    - `stagnated` → Ontology unchanged for 3+ gens. Consider `ouroboros_lateral_think`
-   - `exhausted` → Max 30 generations reached. Display best result
+   - `exhausted` → Max 10 generations reached. Display best result
    - `failed` → Check error, possibly retry
 7. **Repeat step 6** until action ≠ `continue`
 8. When the loop terminates, display a result summary with next step:
@@ -91,14 +91,19 @@ The Ouroboros MCP tools are often registered as **deferred tools** that must be 
 
 ### Path B: Plugin-only (no MCP tools available)
 
-If MCP tools are not available, explain the evolutionary loop concept and
-suggest installing the Ouroboros MCP server. See [Getting Started](docs/getting-started.md) for install options, then run:
+The evolutionary loop requires MCP to function. Without it, session state, generation tracking, rewind, and convergence detection are all unavailable.
 
-```
-ouroboros mcp serve
-```
+Install Ouroboros MCP following the instructions in the repository README under **Installation → Install Ouroboros MCP**, then restart Claude Code and retry.
 
-Then add to your runtime's MCP configuration (e.g., `~/.claude/mcp.json` for Claude Code).
+Do not attempt to simulate the loop manually. The cost of running up to 30 generations without proper state tracking will produce inconsistent results.
+
+## Cost Warning
+
+Each generation makes multiple LLM calls across up to 9 internal agents. Running the full 30-generation limit can be expensive. Before starting:
+
+- Use `--no-execute` for fast ontology exploration if execution is not yet needed.
+- Prefer `ooo evolve --status <lineage_id>` to check convergence progress before continuing.
+- The loop terminates early on `converged` or `stagnated` — 10 generations is a ceiling, not a target.
 
 ## Key Concepts
 
@@ -107,7 +112,7 @@ Then add to your runtime's MCP configuration (e.g., `~/.claude/mcp.json` for Cla
 - **Reflect**: "How should the ontology evolve?" - proposes specific
   mutations to fields, acceptance criteria, and constraints
 - **Convergence**: Loop stops when ontology similarity ≥ 0.95 between
-  consecutive generations, or after 30 generations max
+  consecutive generations, or after 10 generations max
 - **Rewind**: Each generation is a snapshot. You can rewind to any
   generation and branch evolution from there
 - **evolve_step**: Runs exactly ONE generation per call. Designed for

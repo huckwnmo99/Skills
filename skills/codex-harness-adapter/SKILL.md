@@ -29,10 +29,12 @@ Harness work is an exception, not the default. Use it only when role separation,
 ## Routing Table
 
 - `Tiny`: use `karpathy-guidelines` only. Do not create ledger or harness.
-- `Small`: use `karpathy-guidelines` plus one Matt-derived original skill. Existing ledger log only if useful.
-- `Medium`: use `workflow-ledger` lightly plus one original skill such as `diagnose`, `tdd`, `to-prd`, or `to-issues`.
-- `Large`: use `ouroboros-spec-loop` or the relevant `ouroboros-*` skill, `workflow-ledger`, and one execution skill; add role-based review if needed.
+- `Small`: use `karpathy-guidelines` plus one skill from `matt-engineering-workflows`. Existing ledger log only if useful.
+- `Medium`: use `workflow-ledger` lightly plus one skill chosen by `matt-engineering-workflows`.
+- `Large`: use `ouroboros-spec-loop` or the relevant `ouroboros-*` skill, `workflow-ledger`, and one execution skill chosen by `matt-engineering-workflows`; add role-based review if needed.
 - `Strategic`: use `harness` plus `workflow-ledger` to design roles, skill mapping, validation, and evolution.
+
+For Small through Large tasks, delegate skill selection to `matt-engineering-workflows`. Do not name specific Matt-derived skills (diagnose, tdd, to-prd, etc.) directly from this router. That is `matt-engineering-workflows`'s job.
 
 ## One Discovery Workflow
 
@@ -42,10 +44,7 @@ For any one task, use at most one discovery or clarification workflow:
 - Seed generation needed: use `ouroboros-seed`
 - Ouroboros execution needed: use `ouroboros-run`
 - Ouroboros evaluation needed: use `ouroboros-evaluate`
-- PRD needed: use `to-prd`
-- issue breakdown needed: use `to-issues`
-- bug or regression: use `diagnose`
-- architecture improvement: use `improve-codebase-architecture`
+- concrete engineering task: delegate to `matt-engineering-workflows`
 - harness/team design: use `harness`
 
 ## Codex Adaptation

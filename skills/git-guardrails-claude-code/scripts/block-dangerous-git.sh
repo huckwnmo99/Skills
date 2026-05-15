@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if ! command -v jq &>/dev/null; then
+  echo "BLOCKED: jq is not installed. Cannot parse tool input safely. Install jq to use git-guardrails." >&2
+  exit 2
+fi
+
 INPUT=$(cat)
 COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command')
 

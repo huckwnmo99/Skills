@@ -95,3 +95,53 @@ Do not archive routine thoughts, repeated progress chatter, ordinary completion 
 - If another skill creates a PRD, issue, diagnosis, or spec, link it from the ledger with a 1-3 line summary instead of copying it wholesale.
 
 Open `REFERENCE.md` only when sizing, naming, state, or archive rules are unclear. Open only the specific template needed when creating a file.
+
+## Hooks
+
+Three hooks are available in `scripts/` to enforce ledger rules automatically. Install them by adding the following to your project's `.claude/settings.json`:
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash skills/workflow-ledger/scripts/enforce-ledger-naming.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash skills/workflow-ledger/scripts/check-ledger-size.sh"
+          }
+        ]
+      },
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash skills/workflow-ledger/scripts/find-active-ledger.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+What each hook does:
+
+- `enforce-ledger-naming.sh`: Blocks Write if the filename inside `planned/`, `in-progress/`, or `completed/` does not match `NN_YYYY-MM-DD_short-kebab-name.md`.
+- `check-ledger-size.sh`: Warns after Write if a file in `docs/tasks/` exceeds 150 lines.
+- `find-active-ledger.sh`: Surfaces existing ledger READMEs once per session so the agent resumes from the correct state without manual prompting.
+
+All three scripts require `jq`. Run `jq --version` to verify it is installed.
